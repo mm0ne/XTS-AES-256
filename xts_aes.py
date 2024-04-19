@@ -10,7 +10,7 @@ class XTSAES:
 
     def encrypt(self, plaintext):
         if len(plaintext) < AES.block_size:
-            raise Exception("Data size must be >= 16")
+            raise Exception(f"Data size must be >= {AES.block_size} bytes")
 
         aes1 = AES.new(self.key1, AES.MODE_ECB)
         tweak = AES.new(self.key2, AES.MODE_ECB).encrypt(self.tweak)
@@ -43,7 +43,7 @@ class XTSAES:
 
     def decrypt(self, ciphertext):
         if len(ciphertext) < AES.block_size:
-            raise Exception("Data size must be >= 16")
+            raise Exception(f"Data size must be >= {AES.block_size} bytes")
 
         aes1 = AES.new(self.key1, AES.MODE_ECB)
         tweak = AES.new(self.key2, AES.MODE_ECB).encrypt(self.tweak)
