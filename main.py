@@ -33,7 +33,7 @@ class GUI:
                 self.label.config(text=f"Encrypting: {file_path}")
                 self.master.update()
 
-                ciphertext = aes.encrypt(plaintext, TWEAK)
+                ciphertext = aes.encrypt(plaintext)
                 save_path = filedialog.asksaveasfilename(defaultextension=".enc")
                 with open(save_path, "wb") as encrypted_file:
                     encrypted_file.write(ciphertext)
@@ -57,7 +57,7 @@ class GUI:
                 self.label.config(text=f"Decrypting: {file_path}")
                 self.master.update()
 
-                decrypted_text = aes.decrypt(ciphertext, TWEAK)
+                decrypted_text = aes.decrypt(ciphertext)
                 save_path = filedialog.asksaveasfilename(defaultextension=".txt")
                 with open(save_path, "wb") as decrypted_file:
                     decrypted_file.write(decrypted_text)

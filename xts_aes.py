@@ -11,7 +11,7 @@ class XTSAES:
         self.key1 = key[:16]
         self.key2 = key[16:]
 
-    def encrypt(self, plaintext, tweak=None):
+    def encrypt(self, plaintext, tweak=TWEAK):
         aes1 = AES.new(self.key1, AES.MODE_ECB)
         if tweak:
             tweak = AES.new(self.key2, AES.MODE_ECB).encrypt(tweak)
@@ -45,7 +45,7 @@ class XTSAES:
 
         return b"".join(ciphertext)
 
-    def decrypt(self, ciphertext, tweak=None):
+    def decrypt(self, ciphertext, tweak=TWEAK):
         aes1 = AES.new(self.key1, AES.MODE_ECB)
 
         if tweak:
